@@ -1,5 +1,6 @@
-import '../styles/globals.css'
+import '../assets/styles/globals.scss'
 
+// @ts-ignore
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
