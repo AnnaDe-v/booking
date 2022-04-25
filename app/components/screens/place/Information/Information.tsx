@@ -25,8 +25,7 @@ const Information: FC<{ place: IPlace }> = ({ place }) => {
                     <span>{place.duration}</span>
                 </div>
             </div>
-
-            <Map />
+            <Map place={place}/>
         </div>
     )
 }

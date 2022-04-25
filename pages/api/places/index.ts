@@ -11,7 +11,7 @@ export const places: IPlace[] = [
         imageLink: 'http://localhost:3000/images/places/japan.jpg',
         duration: '10 days',
         googleMapLink: 'sdsf',
-        mapImage: 'sdwshjk',
+        mapImage: 'http://localhost:3000/images/places/Tokyo.png',
         rating: 5
     },
     {
