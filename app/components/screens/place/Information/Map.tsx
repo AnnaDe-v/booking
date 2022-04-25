@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import {IPlace} from "../../../../types/place";
-
+import styles from './Information.module.scss'
 
 
 const Map: FC<{ place: IPlace }> = ({ place }) => {
 
-    return <div style={{backgroundImage: `url(${place.mapImage})`, height:'250px', backgroundSize: 'cover',backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}></div>
+    return <div className={styles.map}></div>
 }
 
 export default Map

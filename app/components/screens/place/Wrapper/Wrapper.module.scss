@@ -5,6 +5,7 @@
   background-position: top center;
 
 
+
   &::before {
     content: '';
     position: absolute;
@@ -19,6 +20,7 @@
   > div {
     position: relative;
     z-index: 1;
+    max-width: 480px;
   }
 
 }
