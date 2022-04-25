@@ -9,7 +9,7 @@ const BackButton: FC = () => {
         <Link href='/'>
             <a>
 				<span className={styles.buttonWrapper}>
-					<BsChevronLeft size={20} color='#e8e8e8' />
+					<BsChevronLeft size={24} color='#e8e8e8' />
 				</span>
             </a>
         </Link>
