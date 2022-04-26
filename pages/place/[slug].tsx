@@ -1,6 +1,6 @@
 import React from "react";
 import {API_URL} from "../../app/constants";
-import {NextPage} from "next";
+import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import {IPlace} from "../../app/types/place";
 import Place from "../../app/components/screens/place/Place";
 
@@ -16,7 +16,7 @@ const PlacePage: NextPage<IPlacePage> = ({place}) => {
 }
 
 
-export const getStaticPaths: getStaticPaths =
+export const getStaticPaths: GetStaticPaths =
     async () => {
 
         const res = await fetch(`${API_URL}/places`)
@@ -29,7 +29,7 @@ export const getStaticPaths: getStaticPaths =
         return { paths, fallback: true}
     }
 
-export const getStaticProps: getStaticProps =
+export const getStaticProps: GetStaticProps =
     async ({params}) => {
         const res = await fetch(`${API_URL}/places/${params.slug}`)
         const place = await res.json()

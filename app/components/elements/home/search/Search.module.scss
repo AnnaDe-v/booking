@@ -1,7 +1,7 @@
 @import "../../../../../assets/styles/variables";
 
 .search {
-  background-color: rgba(255, 255, 255, 0.07);
+  @include glassEffect;
   border-radius: 30px;
   width: 100%;
   padding: 0 1rem;
@@ -13,7 +13,7 @@
   align-items: center;
 
   &:focus-within {
-    border-color: $accent;
+    border-color: rgba($accent, 0.4);
   }
 
   >span {
@@ -29,7 +29,7 @@
     color: $white;
 
     &::placeholder {
-      color: #4a494c;
+      color: $white;
     }
   }
 }

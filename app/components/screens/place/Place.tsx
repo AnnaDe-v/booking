@@ -1,7 +1,6 @@
 import React, {FC} from 'react'
 import {IPlace} from '../../../types/place'
 import Layout from '../../common/Layout'
-import BookTrip from './BookTrip/BookTrip'
 import Information from "./Information/Information";
 import Header from "./Header/Header";
 import Wrapper from "./Wrapper/Wrapper";
@@ -16,9 +15,7 @@ const Place: FC<IPlacePage> = ({place}) => {
             <Wrapper imageLink={place.imageLink}>
                 <Header/>
                 <Information place={place}/>
-                <BookTrip/>
             </Wrapper>
-
         </Layout>
     )
 }

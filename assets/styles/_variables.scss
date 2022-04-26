@@ -1,4 +1,21 @@
 $accent: #eb601e;
 $gray: #807e7f;
 $bg-color: #161617;
-$white: rgba(250, 250, 250, 0.65);
+$white: rgb(210, 200, 200);
+
+@mixin glassEffect() {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+@keyframes opac {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

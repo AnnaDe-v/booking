@@ -5,7 +5,7 @@ import styles from './Information.module.scss'
 
 const Map: FC<{ place: IPlace }> = ({ place }) => {
 
-    return <div className={styles.map}></div>
+    return <div className={styles.map}>{place.slug}</div>
 }
 
 export default Map

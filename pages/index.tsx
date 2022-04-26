@@ -1,5 +1,5 @@
 import Layout from "../app/components/common/Layout";
-import { NextPage} from "next";
+import {GetStaticProps, NextPage} from "next";
 import {IPlace} from "../app/types/place";
 import HeadingSection from "../app/components/elements/home/headingSection/HeadingSection";
 import Search from "../app/components/elements/home/search/Search";
@@ -34,9 +34,8 @@ const Home: NextPage<IHome> = ( {initialPlaces} ) => {
     )
 }
 
-export const getStaticProps: getStaticProps =
+export const getStaticProps: GetStaticProps =
     async () => {
-
         const result = await fetch(`${API_URL}/places`)
         const initialPlaces = await result.json()
 
