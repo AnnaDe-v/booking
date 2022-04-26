@@ -1,4 +1,3 @@
-
 import { FC } from 'react'
 import Footer from './footer/Footer'
 
@@ -8,10 +7,9 @@ const Layout: FC<{ isMaxWidth?: boolean }> = ({
                                               }) => {
     return (
         <div>
-            <div style={{ maxWidth: isMaxWidth && 480, margin: '0 auto' }}>
+            <div style={{ maxWidth: isMaxWidth && '480px', margin: '0 auto' }}>
                 {children}
             </div>
-
             <Footer />
         </div>
     )

@@ -16,7 +16,7 @@ export interface IPlace {
     mapImage?: string
 }
 
-export interface IFavorites {
+export interface IFav {
     slug: string
     name: string
 }

@@ -1,39 +1,51 @@
-import React, {FC, useState} from 'react';
-import {BsBookmarkHeart} from 'react-icons/bs';
+import Link from 'next/link'
+import React, { FC, useState } from 'react'
+import { BsBookmarkHeart } from 'react-icons/bs'
+import { IFav } from '../../../../types/place'
 import styles from './Header.module.scss'
-import {IFavorites} from "../../../../types/place";
-import Link from 'next/link';
 
-const data: IFavorites[] = [
+const data: IFav[] = [
     {
         name: 'Japan, Japan',
-        slug: 'tokio'
-    }
+        slug: 'tokyo',
+    },
+    {
+        name: 'Italy, Italy',
+        slug: 'venezia',
+    },
+    {
+        name: 'Japan, Japan',
+        slug: 'tokyo-1',
+    },
+    {
+        name: 'Italy, Italy',
+        slug: 'venezia-1',
+    },
 ]
-
 
 const Favorites: FC = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <div>
-            <button onClick={() => setIsOpen(!isOpen) }>
-                <span className={styles.buttonWrapper}>
-                    <BsBookmarkHeart size={20} color='white' />
-                </span>
+        <div className={styles.bookmark}>
+            <button onClick={() => setIsOpen(!isOpen)}>
+				<span className={styles.buttonWrapper}>
+					<BsBookmarkHeart size={20} color='#e8e8e8' />
+				</span>
             </button>
             {isOpen && (
                 <ul>
-                    {data.map(item => (<li key={item.slug}>
-                            <Link href={`/place/${item.slug}`}>
-                                <a>{item.name}</a>
+                    {data.map(fav => (
+                        <li key={fav.slug}>
+                            <Link href={`/place/${fav.slug}`}>
+                                <a>{fav.name}</a>
                             </Link>
-                        </li>)
-                    )}
+                        </li>
+                    ))}
                 </ul>
-                )}
+            )}
         </div>
-    );
-};
+    )
+}
 
-export default Favorites;
+export default Favorites
