@@ -26,7 +26,7 @@ const Information: FC<{ place: IPlace }> = ({ place }) => {
                     <span>{place.duration}</span>
                 </div>
             </div>
-            <Map place={place}/>
+            <Map location={place.location}/>
             <BookTrip/>
         </div>
     )
