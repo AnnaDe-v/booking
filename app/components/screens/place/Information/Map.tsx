@@ -18,12 +18,12 @@ const Map: FC<{ location: TypeLocation }> = ({ location }) => {
         <div className={styles.map}>
             <ComposableMap
                 projectionConfig={{
-                    center: [60, 33],
+                    center: [250, 100]
                 }}
                 width={240}
                 height={140}
             >
-                <ZoomableGroup zoom={0.6}>
+                <ZoomableGroup zoom={0.4}>
                     <Geographies geography={geoUrl}>
                         {({ geographies }) =>
                             geographies.map(geo => {
