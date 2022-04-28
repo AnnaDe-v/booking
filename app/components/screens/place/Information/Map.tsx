@@ -5,7 +5,7 @@ import {
     Geography,
     ZoomableGroup,
 } from 'react-simple-maps'
-import { TypeLocation } from '../../../../types/place'
+import { TypeLocation } from '@/types/place'
 
 
 import styles from './Information.module.scss'
@@ -18,7 +18,7 @@ const Map: FC<{ location: TypeLocation }> = ({ location }) => {
         <div className={styles.map}>
             <ComposableMap
                 projectionConfig={{
-                    center: [250, 100]
+                    center: [100, 0]
                 }}
                 width={240}
                 height={140}

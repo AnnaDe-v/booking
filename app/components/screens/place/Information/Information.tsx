@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { FaCalendar, FaMapMarkerAlt, FaStar } from 'react-icons/fa'
-import { IPlace } from '../../../../types/place'
+import { IPlace } from '@/types/place'
 import styles from './Information.module.scss'
 import Map from './Map'
 import BookTrip from "../BookTrip/BookTrip";

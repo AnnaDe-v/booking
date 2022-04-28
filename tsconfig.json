@@ -22,7 +22,15 @@
     "incremental": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": "./app/",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/screens/*": ["components/screens*"],
+      "@/types/*": ["types/*"],
+      "@/assets/*": ["assets/*"],
+      "@/components/common/*": ["common/*"],
+    }
   },
   "include": [
     "next-env.d.ts",
