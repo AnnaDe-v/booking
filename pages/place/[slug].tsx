@@ -1,7 +1,7 @@
 import React from "react";
 import {API_URL} from "../../app/constants";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
-import {IPlace} from "../../app/types/place";
+import {IPlace} from "@/types/place";
 import Place from "../../app/components/screens/place/Place";
 
 interface IPlacePage {
