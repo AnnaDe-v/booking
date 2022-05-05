@@ -12,7 +12,7 @@ interface IPlacePage {
 const Place: FC<IPlacePage> = ({place}) => {
     return (
         <Layout isMaxWidth={false}>
-            <Wrapper imageLink={place.imageLink}>
+            <Wrapper imagePath={place.imagePath}>
                 <Header/>
                 <Information place={place}/>
             </Wrapper>

@@ -1,6 +1,6 @@
 import styles from './PopularPlaces.module.scss';
 import {FC} from "react";
-import {IPlace} from "../../../../types/place";
+import {IPlace} from "@/types/place";
 import Link from 'next/link';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -25,12 +25,12 @@ const PopularPlaces: FC<IPopularPlaces> = ({places, isLoading}) => {
 
                     ( places.map(place => (
                 <Link href={`place/${place.slug}`}
-                      key={place.slug}
+                      key={place._id}
                 >
                     <a
 
                         className={styles.item}
-                        style={{backgroundImage: `url(${place.imageLink})`}}
+                        style={{backgroundImage: `url(${place.imagePath})`}}
                     >
                         <span className={styles.heading}>
                             {place.location.city + ', ' + place.location.country}

@@ -1,6 +1,6 @@
 import Layout from "../app/components/common/Layout";
 import {GetStaticProps, NextPage} from "next";
-import {IPlace} from "../app/types/place";
+import {IPlace} from "@/types/place";
 import HeadingSection from "../app/components/elements/home/headingSection/HeadingSection";
 import Search from "../app/components/elements/home/search/Search";
 import Filters from "../app/components/elements/filters/Filters";
