@@ -7,6 +7,7 @@ import Filters from "../app/components/elements/filters/Filters";
 import {API_URL} from "../app/constants";
 import PopularPlaces from "../app/components/elements/home/popularPlaces/PopularPlaces";
 import {useState} from "react";
+import Meta from "../app/utils/Meta";
 
 interface IHome {
     initialPlaces: Array<IPlace>
@@ -18,6 +19,7 @@ const Home: NextPage<IHome> = ( {initialPlaces} ) => {
 
     return (
         <Layout>
+            <Meta title='Booking' description='Поиск места для отдыха и путешествия' />
             <HeadingSection/>
             <div style={{width: '80%', margin: '0 auto'}}>
                 <Search setPlaces={setPlaces}

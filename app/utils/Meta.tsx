@@ -15,7 +15,7 @@ const Meta: FC<IMeta> = ({ title, description, image }) => {
 
     return (
         <Head>
-            <title itemProp='headline'>{title} | Travel App</title>
+            <title itemProp='headline'>{title} | booking App</title>
             {description ? (
                 <>
                     <meta
@@ -27,8 +27,8 @@ const Meta: FC<IMeta> = ({ title, description, image }) => {
                     <meta property='og:locale' content='en' />
                     <meta property='og:title' content={title} />
                     <meta property='og:url' content={currentUrl} />
-                    <meta property='og:image' content={image || '/logo.jpg'} />
-                    <meta property='og:site_name' content='Travel App' />
+                    <meta property='og:image' content={image || '/travel-logo1.webp'} />
+                    <meta property='og:site_name' content='booking App' />
                     <meta
                         property='og:description'
                         content={onlyText(description, 197)}
