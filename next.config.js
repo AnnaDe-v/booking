@@ -7,9 +7,9 @@ module.exports = {
 }
 
 const STUDIO_REWRITE = {
-  source: '/studio/:path*',
+  source: '/booking/:path*',
   destination:
     process.env.NODE_ENV = 'development'
     ? 'http://localhost:3333/studio/:path*'
-    : '/studio/index.html'
+    : '/booking/index.html'
 }
