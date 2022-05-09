@@ -3,8 +3,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "echo 'Building Sanity to public/booking' && cd studio && yarn && npx @sanity/cli build ../public/booking -y && echo 'Done'",
     "build": "next build",
     "start": "next start",
+    "sanity": "cd booking && sanity start",
     "lint": "next lint"
   },
   "dependencies": {
