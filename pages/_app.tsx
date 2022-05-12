@@ -1,30 +1,38 @@
-import '../assets/styles/globals.scss'
+// import '../assets/styles/globals.scss'
 import NextProgressBar from 'nextjs-progressbar'
 import {useState} from "react";
-import style from '../assets/styles/Home.module.scss'
+// import style from '../assets/styles/Home.module.scss'
+import {ThemeProvider} from "styled-components";
+import {darkTheme, lightTheme} from "@/components/themeConfig";
+import {GlobalStyles} from '@/components/globalStyles';
 
 // @ts-ignore
-function MyApp({ Component, pageProps }) {
-
-    const [colorStyle, setColorStyle] = useState(style.lightTheme)
+function MyApp({Component, pageProps}) {
 
 
-  return (
-      <>
-          <div className={ `${colorStyle}` }>
-              <NextProgressBar
-                  color='#eb601e'
-                  startPosition={0.3}
-                  stopDelayMs={200}
-                  height={3}
-              />
-              <button className='themeButton' onClick={ ()=>{setColorStyle(style.darkTheme)} }>DARK MODE</button>
-              <button className='themeButton' onClick={ ()=>{setColorStyle(style.lightTheme)} }>LIGHT MODE</button>
-              <Component {...pageProps} />
-          </div>
+    const [theme, setTheme] = useState('light');
 
-      </>
-  )
+    const themeToggler = () => {
+
+        theme === 'light' ? setTheme('dark') : setTheme('light')}
+
+        return (
+            <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+                <>
+                    <GlobalStyles/>
+                    <NextProgressBar
+                        color='#eb601e'
+                        startPosition={0.3}
+                        stopDelayMs={200}
+                        height={3}
+                    />
+                    <button className='themeSwitcher' onClick={themeToggler}>switch theme</button>
+                    <Component {...pageProps} />
+                </>
+            </ThemeProvider>
+
+        )
+
 }
 
 export default MyApp
