@@ -9,12 +9,10 @@ interface IPlacePage {
 }
 
 const PlacePage: NextPage<IPlacePage> = ({place}) => {
-
     return (
         <Place place={place}/>
     )
 }
-
 
 export const getStaticPaths: GetStaticPaths =
     async () => {
@@ -38,7 +36,6 @@ export const getStaticProps: GetStaticProps =
         return {props: {place}}
 
     }
-
 
 
 export default PlacePage;
