@@ -1,23 +1,23 @@
 // import '../assets/styles/globals.scss'
 import NextProgressBar from 'nextjs-progressbar'
-import {useState} from "react";
 // import style from '../assets/styles/Home.module.scss'
 import {ThemeProvider} from "styled-components";
 import {darkTheme, lightTheme} from "@/components/themeConfig";
 import {GlobalStyles} from '@/components/globalStyles';
+import Toggle from '@/components/Toggle';
+import { useDarkMode } from '@/components/useDarkMode';
 
 // @ts-ignore
 function MyApp({Component, pageProps}) {
 
 
-    const [theme, setTheme] = useState('light');
+    const [theme, themeToggler] = useDarkMode();
 
-    const themeToggler = () => {
+    const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
-        theme === 'light' ? setTheme('dark') : setTheme('light')}
 
         return (
-            <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+            <ThemeProvider theme={themeMode}>
                 <>
                     <GlobalStyles/>
                     <NextProgressBar
@@ -26,7 +26,7 @@ function MyApp({Component, pageProps}) {
                         stopDelayMs={200}
                         height={3}
                     />
-                    <button className='themeSwitcher' onClick={themeToggler}>switch theme</button>
+                    <Toggle theme={theme} toggleTheme={themeToggler} />
                     <Component {...pageProps} />
                 </>
             </ThemeProvider>
