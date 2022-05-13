@@ -4,22 +4,24 @@ import {IPlace} from "@/types/place";
 import HeadingSection from "../app/components/elements/home/headingSection/HeadingSection";
 import Search from "../app/components/elements/home/search/Search";
 import Filters from "../app/components/elements/filters/Filters";
-import {API_URL} from "../app/constants";
 import PopularPlaces from "../app/components/elements/home/popularPlaces/PopularPlaces";
 import {useState} from "react";
 import Meta from "../app/utils/Meta";
+import { sanityClient } from '../app/sanity'
+
+const placeQuery = `*[_type == "place"]`
 
 interface IHome {
     initialPlaces: Array<IPlace>
 }
 
-const Home: NextPage<IHome> = ( {initialPlaces} ) => {
+const Home: NextPage<IHome> = ({initialPlaces}) => {
     const [places, setPlaces] = useState(initialPlaces)
     const [isLoading, setIsLoading] = useState(false)
 
     return (
         <Layout>
-            <Meta title='Booking' description='Поиск места для отдыха и путешествия' />
+            <Meta title='Booking' description='Поиск места для отдыха и путешествия'/>
             <HeadingSection/>
             <div style={{width: '80%', margin: '0 auto'}}>
                 <Search setPlaces={setPlaces}
@@ -38,14 +40,13 @@ const Home: NextPage<IHome> = ( {initialPlaces} ) => {
 
 export const getStaticProps: GetStaticProps =
     async () => {
-        const result = await fetch(`${API_URL}/places`)
-        const initialPlaces = await result.json()
+        const result = await sanityClient.fetch(placeQuery)
 
         return {
             props: {
-                initialPlaces,
+                initialPlaces: result
             },
         }
-}
+    }
 
 export default Home;

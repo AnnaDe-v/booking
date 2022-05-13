@@ -3,9 +3,9 @@ import createImageUrlBuilder from "@sanity/image-url";
 import {PortableText as PortableTextComponent} from "@portabletext/react";
 
 const config = {
-    projectId: '',
+    projectId: '1oifayb5',
     dataset: 'production',
-    apiVersion: '2021-05-16',
+    apiVersion: '2021-10-21',
     useCdn: false,
 }
 
