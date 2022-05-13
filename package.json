@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@portabletext/react": "^1.0.6",
+    "@sanity/image-url": "^1.0.1",
     "@types/classnames": "^2.3.1",
     "@types/react-simple-maps": "^1.0.8",
     "init": "^0.1.2",
