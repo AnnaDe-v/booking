@@ -8,8 +8,7 @@ import PopularPlaces from "../app/components/elements/home/popularPlaces/Popular
 import {useState} from "react";
 import Meta from "../app/utils/Meta";
 import { sanityClient } from '../app/sanity'
-
-const placeQuery = `*[_type == "place"]`
+import {queries} from "../app/queries";
 
 interface IHome {
     initialPlaces: Array<IPlace>
@@ -40,7 +39,7 @@ const Home: NextPage<IHome> = ({initialPlaces}) => {
 
 export const getStaticProps: GetStaticProps =
     async () => {
-        const result = await sanityClient.fetch(placeQuery)
+        const result = await sanityClient.fetch(queries.getPlaces)
 
         return {
             props: {
