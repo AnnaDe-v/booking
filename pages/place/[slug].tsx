@@ -1,8 +1,9 @@
 import React from "react";
-import {API_URL} from "../../app/constants";
 import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import {IPlace} from "@/types/place";
 import Place from "../../app/components/screens/place/Place";
+import {sanityClient} from "../../app/sanity";
+import {queries} from "../../app/queries";
 
 interface IPlacePage {
     place: IPlace
@@ -14,28 +15,21 @@ const PlacePage: NextPage<IPlacePage> = ({place}) => {
     )
 }
 
-export const getStaticPaths: GetStaticPaths =
-    async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+    const result = await sanityClient.fetch(`${queries.getPlaces}{slug}`)
 
-        const res = await fetch(`${API_URL}/places`)
-        const places = await res.json()
+    const paths = result.map(place => ({
+        params: { slug: place.slug.current }
+    }))
 
-        const paths = places.map(post => ({
-            params: {slug: post.slug},
-        }))
+    return { paths, fallback: 'blocking' }
+}
 
-        return { paths, fallback: true}
-    }
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+    const place = await sanityClient.fetch(queries.getPlace(String(params.slug)))
 
-export const getStaticProps: GetStaticProps =
-    async ({params}) => {
-        const res = await fetch(`${API_URL}/places/${params.slug}`)
-        const place = await res.json()
-        console.log(place)
-
-        return {props: {place}}
-
-    }
+    return { props: { place } }
+}
 
 
 export default PlacePage;

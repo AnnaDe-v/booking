@@ -25,7 +25,7 @@ const PopularPlaces: FC<IPopularPlaces> = ({places, isLoading}) => {
                         />) : places.length ?
 
                     ( places.map(place => (
-                <Link href={`place/${place.slug}`}
+                <Link href={`place/${place.slug.current}`}
                       key={place._id}
                 >
                     <a
