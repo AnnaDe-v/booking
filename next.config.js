@@ -1,7 +1,8 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-    APP_URL: 'http://localhost:3000'
+    APP_URL: 'http://localhost:3000',
+    SANITY_API_TOKEN: '',
   },
   rewrites: () => [],
 }
