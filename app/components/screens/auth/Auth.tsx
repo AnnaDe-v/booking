@@ -1,51 +1,81 @@
-import React, {FC, useState} from 'react';
-import Layout from "../../common/Layout";
-import {SubmitHandler, useForm} from "react-hook-form";
-import {IAuthFields} from "@/screens//auth/auth.inteerface";
-import styles from '../auth/Auth.module.scss'
-import stylesForButton from '../place/BookTrip/BookTrip.module.scss'
-import {AiFillSecurityScan} from "react-icons/all";
-import {signUp} from "next-auth-sanity/dist/client";
+import { FC, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { CgProfile } from 'react-icons/cg'
+import { IAuthFields } from './auth.interface'
 
+import styles from './Auth.module.scss'
+import stylesButton from '../place/BookTrip/BookTrip.module.scss'
+import { signUp } from 'next-auth-sanity/dist/client'
+import { signIn } from 'next-auth/react'
+import { toast } from 'react-toastify'
+import Layout from '../../common/Layout'
 
 const Auth: FC = () => {
-    const {handleSubmit, register, formState: {errors}} = useForm<IAuthFields>({
-        mode: 'onChange'
-    })
     const [typeForm, setTypeForm] = useState<'login' | 'register'>('login')
 
+    const {
+        handleSubmit,
+        register,
+        formState: { errors }
+    } = useForm<IAuthFields>({
+        mode: 'onChange'
+    })
+
+    const isReg = typeForm === 'register'
+
     const onSubmit: SubmitHandler<IAuthFields> = async data => {
-        await signUp(data)
+        if (isReg) {
+            const response = await signUp(data)
+            if (response.error) toast.error(response.error)
+        } else {
+            const response = await signIn('sanity-login', {
+                redirect: false,
+                ...data
+            })
+            if (response.error) toast.error(response.error)
+        }
     }
 
+    return (
+        <Layout>
+            <h1 className={styles.h1}>Auth/{isReg ? 'Register' : 'login'}</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className={styles.wrapper}>
+                    <input
+                        {...register('email', { required: 'Email is invalid!' })}
+                        type="text"
+                        placeholder="E-mail"
+                        className={styles.input}
+                    />
+                    {errors.email && <div className={styles.error}>{errors.email}</div>}
+                </div>
+                <div className={styles.wrapper}>
+                    <input
+                        {...register('password', { required: 'Password is invalid!' })}
+                        type="password"
+                        placeholder="Password"
+                        className={styles.input}
+                    />
+                    {errors.password && (
+                        <div className={styles.error}>{errors.password}</div>
+                    )}
+                </div>
+                <button className={stylesButton.button}>
+					<span className={stylesButton.text}>
+						{isReg ? 'Register' : 'Login'}
+					</span>
+                    <span className={stylesButton.icon}>
+						<CgProfile size="18" />
+					</span>
+                </button>
+                <div className={styles.changeType}>
+                    <button onClick={() => setTypeForm(isReg ? 'login' : 'register')}>
+                        I want {isReg ? 'login' : 'register'}
+                    </button>
+                </div>
+            </form>
+        </Layout>
+    )
+}
 
-    return <Layout>
-        <h1>Auth/register</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={styles.wrapper}>
-                <input
-                    {...register('email', {required: 'Email is required'})}
-                    type="text"
-                    placeholder='email'
-                    className={styles.input}
-                />
-                {errors.email && <div className={styles.error}>{errors.email}</div>}
-            </div>
-            <div className={styles.wrapper}>
-                <input
-                    {...register('password', {required: 'Password is required'})}
-                    type="text"
-                    placeholder='password'
-                    className={styles.input}
-                />
-                {errors.password && <div className={styles.error}>{errors.password}</div>}
-            </div>
-            <button className={stylesForButton.button}>
-                <span className={stylesForButton.text}>{typeForm === 'register' ? 'Register' : 'Login'}</span>
-                <span className={stylesForButton.icon}><AiFillSecurityScan size='18' /></span>
-            </button>
-        </form>
-    </Layout>
-};
-
-export default Auth;
+export default Auth
